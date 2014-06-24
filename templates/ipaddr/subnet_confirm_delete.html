@@ -1,0 +1,15 @@
+{% extends "ipaddr/base.html" %}
+
+{% block breadcrumbs %}
+{{block.super}}
+<li><a href="{% url "netman_ipaddr_home" %}">IP Addresses</a></li>
+<li>Delete Subnet</li>
+{% endblock %}
+
+{% block main %}
+<p>Are you sure you want to delete the <strong>{{subnet}}</strong> network? This will all remove all children subnets and addresses.</p>
+<form action="." method="post">
+{% csrf_token %}
+<input type="submit" value="Yes"/> <a href="../">No</a>
+</form>
+{% endblock %}

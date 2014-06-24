@@ -1,0 +1,47 @@
+{% extends "ipaddr/base.html" %}
+
+{% block breadcrumbs %}
+{{block.super}}
+<li><a href="{% url "netman_ipaddr_home" %}">IP Addresses</a></li>
+<li>Subnet Details</li>
+{% endblock %}
+
+{% block main %}
+<table class="table-summary">
+<tr><th style="width: 12em;">Network:</th><td>{{subnet.network_addr.strCompressed}}</td></tr>
+{% if subnet.is_ipv4 %}
+<tr><th>Netmask:</th><td>{{subnet.network_addr.strNetmask}}</td></tr>
+{% endif %}
+<tr><th>Description:</th><td>{{subnet.description}}</td></tr>
+{% if not subnet.supernet %}
+{% if subnet.is_ipv4 %}
+<tr><th>Addresses:</th><td>{{subnet.used_addresses}} used out of {{subnet.usable_addresses}} usable</td></tr>
+<tr><th>Percentage:</th><td>{{subnet.used_percentage}}% ({{subnet.usable_used_percentage}}% of usable)</td></tr>
+{% endif %}
+<tr><th>Reverse Zone:</th><td>{{subnet.network_addr.reverseName}}</td></tr>
+{% endif %}
+</table>
+
+{% if not subnet.supernet %}
+<div>&nbsp;</div>
+<table class="table-data table table-condensed">
+<tr><th style="width: 25%">Address</th><th style="width: 30%;">Hostname</th><th style="width: 30%;">Description</th><th>Actions</th></tr>
+{% for addr in subnet.address_set.all %}
+<tr>
+  <td>{{addr.addr.strCompressed}}</td>
+{% ifequal addr.addr addr.subnet.network_addr.net %}
+  <td colspan="3">NETWORK ADDRESS</td>
+{% else %}{% ifequal addr.addr addr.subnet.network_addr.broadcast %}
+  <td colspan="3">BROADCAST ADDRESS</td>
+{% else %}
+  <td>{{addr.hostname|default_if_none:""}}</td>
+  <td>{{addr.description|default_if_none:""}}</td>
+  <td style="text-align: center;">
+    <a href="{% url "netman_ipaddr_addr_edit" subnet_id=addr.subnet.id addr_id=addr.id %}">edit</a>
+  </td>
+{% endifequal %}{% endifequal %}
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}

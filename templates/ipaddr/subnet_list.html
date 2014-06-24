@@ -1,0 +1,72 @@
+{% extends "ipaddr/base.html" %}
+{% block breadcrumbs %}
+{{block.super}}
+<li><a href="{% url "netman_ipaddr_home" %}">IP Addresses</a></li>
+<li>Subnet List</li>
+{% endblock %}
+
+{% block extra_head %}
+<script type="text/javascript">
+    $(function() {
+        $('#subnet-table').on('click', '.toggle', function () {
+            //Gets all <tr>'s  of greater depth below element in the table
+            var findChildren = function (tr) {
+                var depth = tr.data('depth');
+                return tr.nextUntil($('tr').filter(function () {
+                    return $(this).data('depth') <= depth;
+                }));
+            };
+
+            var tr = $(this).closest('tr'); //Get <tr> parent of toggle button
+            var children = findChildren(tr);
+            var span = tr.find('span.glyphicon')
+            //Remove already collapsed nodes from children so that we don't
+            //make them visible.
+            //(Confused? Remove this code and close Item 2, close Item 1
+            //then open Item 1 again, then you will understand)
+            var subnodes = children.filter('.expanded');
+            subnodes.each(function () {
+                var subnode = $(this);
+                var subnodeChildren = findChildren(subnode);
+                children = children.not(subnodeChildren);
+            });
+
+            //Change icon and hide/show children
+            if (tr.hasClass('collapsed')) {
+                tr.removeClass('collapsed').addClass('expanded');
+                span.removeClass('glyphicon-minus-sign').addClass('glyphicon-plus-sign');
+                children.hide();
+            } else {
+                tr.removeClass('expanded').addClass('collapsed');
+                span.removeClass('glyphicon-plus-sign').addClass('glyphicon-minus-sign');
+                children.show();
+            }
+            return children;
+        });
+    });
+</script>
+<style type="text/css">
+    span.glyphicon { display: block-inline; width: 16px; }
+    tr.level0 td { font-weight: bold; }
+    tr.level1 td.d { padding-left: 1.5em; }
+    tr.level2 td.d { padding-left: 3em; }
+    tr.level3 td.d { padding-left: 4.5em; }
+    tr.level4 td.d { padding-left: 6em; }
+    tr.level5 td.d { padding-left: 7.5em; }
+    tr.level6 td.d { padding-left: 9em; }
+</style>
+{% endblock %}
+
+{% block main %}
+<p><a href="{% url "netman_ipaddr_subnet_create" %}">Create New Subnet</a></p>
+<table id="subnet-table" class="table table-hover table-condensed">
+<tr><th>Subnet</th><th>Description</th><th></th></tr>
+{% for subnet in subnet_list %}
+<tr data-depth="{{subnet.level}}" class="{% ifnotequal subnet.level 0 %}expanded collapse {% endifnotequal %}level{{subnet.level}}">
+    <td class="d"><span class="glyphicon {% if subnet.is_leaf_node %}{% else %}glyphicon-plus-sign toggle{% endif %}"></span> <a href="{% url "netman_ipaddr_subnet_view" subnet_id=subnet.id %}">{{subnet.network_addr}}</a></td>
+    <td>{{subnet.description}}</td>
+    <td></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

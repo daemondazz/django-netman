@@ -1,0 +1,9 @@
+{% extends "netman_base.html" %}
+
+{% block meta_title %}{{block.super}} :: IP Addresses{% endblock %}
+{% block title %}{{block.super}} :: IP Addresses {% endblock %}
+
+{% block breadcrumbs %}
+{{block.super}}
+<li><a href="{% url "netman_homepage" %}">Network Manager</a></li>
+{% endblock %}

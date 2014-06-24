@@ -1,0 +1,18 @@
+{% extends "ipaddr/base.html" %}
+{% block breadcrumbs %}
+{{block.super}}
+<li><a href="{% url "netman_ipaddr_home" %}">IP Addresses</a></li>
+<li>Edit Address</li>
+{% endblock %}
+s
+
+{% block main %}
+<form action="." method="post">
+{% csrf_token %}
+<table class="table-summary">
+{{form}}
+</table>
+<input type="submit" value="Edit" />
+&nbsp; &nbsp;<a href="{% url "netman_ipaddr_subnet_view" subnet_id=address.subnet.id %}">Cancel</a>
+</form>
+{% endblock %}

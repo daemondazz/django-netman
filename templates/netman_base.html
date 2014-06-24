@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block meta_title %}Network Manager{% endblock %}
+{% block title %}Network Manager{% endblock %}
+
+{% block head_extra %}
+<link href="{{ STATIC_URL }}css/netman.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+
+{% block breadcrumbs %}
+<li><a href="{% url "home" %}">Home</a></li>
+<li><a href="{% url "staff_home" %}">Staff Portal</a></li>
+{% endblock %}
