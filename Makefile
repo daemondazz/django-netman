@@ -30,7 +30,7 @@ builddeb:
 	git add debian/changelog
 	git commit -m "Automatically updated changelog for version $(VERSION)"
 	git tag --force v$(VERSION)
-	$(PYTHON) setup.py sdist $(COMPILE) --dist-dir=../ --prune
+	$(PYTHON) setup.py sdist $(COMPILE) --dist-dir=..
 	rename -f 's/$(PROJECT)-(.*)\.tar\.gz/$(PROJECT)_$$1\.orig\.tar\.gz/' ../*
 	# build the package
 	dpkg-buildpackage -i -I -rfakeroot
