@@ -19,10 +19,12 @@ setup(
     author='Darryl Ross',
     author_email='darryl@afoyi.com',
     url='https://git.afoyi.com/django-modules/django-netman/',
-    packages=[ 'netman', 'netman/ipaddr' ],
+    packages=[ 'netman', 'netman/ipaddr', 'netman/rack', 'netman/switch' ],
     package_data={
         'netman': glob('netman/static/css/*.css') + glob('netman/templates/*.html'),
-        'netman/ipaddr': glob('netman/templates/ipaddr/*.html')
+        'netman/ipaddr': glob('netman/templates/ipaddr/*.html'),
+        'netman/rack': glob('netman/templates/rack/*.html'),
+        'netman/switch': glob('netman/templates/switch/*.html')
     },
     include_package_data=True
 )
