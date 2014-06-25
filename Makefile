@@ -5,7 +5,7 @@ PYTHON=/usr/bin/python
 DESTDIR=/
 BUILDIR=$(CURDIR)/debian/django-netman
 PROJECT=django-netman
-VERSION=`$(PYTHON) setup.py --version`
+VERSION=`$(PYTHON) setup.py --version | cut -d '-' -f 1`
 
 all:
 	@echo "make source - Create source package"
