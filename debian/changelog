@@ -1,3 +1,9 @@
+django-netman (0.2.3) precise; urgency=low
+
+  * Remove extraneous import of unneeded classes.
+
+ -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 22:36:14 +0930
+
 django-netman (0.2.2) precise; urgency=low
 
   * Expand setup.py to include rack and switch modules.
