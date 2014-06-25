@@ -1,0 +1,99 @@
+table.rack_layout {
+	font-size: 9pt;
+	border-collapse: collapse;
+	width: 400px;
+	margin: 1em auto;
+}
+table.rack_layout td {
+	text-align: center;
+	height: 15px;
+}
+table.rack_layout td.populated_false {
+	border: 1px solid gray;
+	background-color: white;
+}
+table.rack_layout td.row_num {
+	width: 25px;
+}
+table.rack_layout td.populated_front {
+	border: 1px solid gray;
+	background-color: #3399CC;
+	color: white;
+}
+table.rack_layout td.populated_back {
+	border: 1px solid gray;
+	background-color: salmon;
+}
+table.rack_layout td.populated_full {
+	border: 1px solid gray;
+	background-color: palegreen;
+}
+span.action {
+	float: right; position: relative;
+}
+form p {
+	color: lightgray;
+}
+form label {
+	color: black;
+	display: inline-block;
+	width: 10em;
+	text-align: right;
+	font-weight: normal;
+}
+form label.required {
+	font-weight: bold;
+}
+form input, form select {
+	color: black;
+	border: 1px solid black;
+}
+table.switch_layout {
+	font-size: 7pt;
+	border: 1px solid gray;
+	border-collapse: collapse;
+	width: 100%;
+	background-color: lightgray;
+
+}
+table.switch_layout td.switch_port {
+	border: 1px solid gray;
+	text-align: center;
+	vertical-align: middle;
+	width: 15px;
+	margin: 0;
+	padding: 3px;
+	background-color: white;
+}
+table.switch_layout td.link_active_10M {
+	background-color: lightsalmon;
+}
+table.switch_layout td.link_active_100M {
+	background-color: khaki;
+}
+table.switch_layout td.link_active_1G {
+	background-color: palegreen;
+}
+table.switch_layout td.link_active_10G {
+	background-color: plum;
+}
+table.switch_layout td.switch_spacer {
+	width: 5px;
+}
+span.tooltip a span {
+	display: none;
+}
+span.tooltip a:hover {
+	position: relative;
+}
+span.tooltip a:hover span {
+	z-index:10;
+	display: block;
+	position: absolute;
+	top: 25px; left: 25px;
+	background-color: lightsteelblue;
+	border: 2px solid black;
+	width: 15em;
+	font-size: 10pt;
+	opacity: 0.93;
+}
