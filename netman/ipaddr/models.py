@@ -115,29 +115,6 @@ class Address(models.Model):
         if self.description == '':
             self.description is None
         super(Address, self).save(*args, **kwargs)
-        try:
-            revname = self.addr.reverseName()[:-1]
-            if self.hostname in ('ns1', 'web1', 'shared01'):
-                desc = self.description.split('/')[0]
-            else:
-                desc = self.hostname
-            record = Record.objects.get(name=revname)
-            if desc is None:
-                record.delete()
-            else:
-                record.content = desc
-                record.save()
-        except Record.DoesNotExist:
-            if desc is None:
-                return
-            try:
-                domain = Domain.objects.extra(where=["'%s' LIKE ('%%%%' || name)" % revname]).order_by('-name').first()
-                Record(domain=domain,
-                       name=revname,
-                       type='PTR',
-                       content=desc).save()
-            except Domain.DoesNotExist:
-                pass
 
     class Meta:
         ordering = ['addr']
