@@ -1,3 +1,10 @@
+django-netman (0.1.2) UNRELEASED; urgency=low
+
+  * Correct spelling error in Makefile
+  * Don't mark as released.
+
+ -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 14:11:56 +0930
+
 django-netman (0.1.1) precise; urgency=low
 
   * Packaged 0.1.1
