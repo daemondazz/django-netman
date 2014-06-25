@@ -7,7 +7,7 @@ Standards-Version: 3.9.1
 X-Python-Version: >= 2.6
 
 Package: django-netman
-Architecture: all
+Architecture: any
 Depends: ${misc:Depends}, ${python:Depends}
 Description: Network management modules for Django
  Network management modules for Django
