@@ -28,7 +28,7 @@ builddeb:
 	# then rename it to project_version.orig.tar.gz
 	git-dch --auto --git-author -N $(VERSION)
 	git add debian/changelog
-	git commit -m "Automatically updated changelog for verison $(VERSION)"
+	git commit -m "Automatically updated changelog for version $(VERSION)"
 	git tag --force v$(VERSION)
 	$(PYTHON) setup.py sdist $(COMPILE) --dist-dir=../ --prune
 	rename -f 's/$(PROJECT)-(.*)\.tar\.gz/$(PROJECT)_$$1\.orig\.tar\.gz/' ../*
