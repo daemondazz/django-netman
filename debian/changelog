@@ -1,3 +1,9 @@
+django-netman (0.3) precise; urgency=low
+
+  * Add urls.py file to MANIFEST.
+
+ -- Darryl Ross <darryl@afoyi.com>  Thu, 26 Jun 2014 00:06:50 +0930
+
 django-netman (0.2.3) precise; urgency=low
 
   * Remove extraneous import of unneeded classes.
