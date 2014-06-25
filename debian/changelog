@@ -1,3 +1,10 @@
+django-netman (0.1.7) precise; urgency=low
+
+  * Update Makefile to make releases as released.
+  * Add Makefile target to push everything upstream.
+
+ -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 14:04:47 +0930
+
 django-netman (0.1.7) UNRELEASED; urgency=low
 
   * TAB->space the setup.py file
