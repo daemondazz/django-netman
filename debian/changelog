@@ -1,3 +1,12 @@
+django-netman (0.1.5-3-g07f791a) UNRELEASED; urgency=low
+
+  [ root ]
+  * UNRELEASED
+
+  [ Darryl Ross ]
+
+ -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 13:49:32 +0930
+
 django-netman (0.1.5) UNRELEASED; urgency=low
 
   * Remove prune option from sdist call.
