@@ -1,3 +1,9 @@
+django-netman (0.2) UNRELEASED; urgency=low
+
+  * Update setup.py to include templates and static media.
+
+ -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 16:17:44 +0930
+
 django-netman (0.1.3) UNRELEASED; urgency=low
 
   * Build binary package only.
