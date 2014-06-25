@@ -1,3 +1,9 @@
+django-netman (0.1.7) UNRELEASED; urgency=low
+
+  * TAB->space the setup.py file
+
+ -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 13:59:28 +0930
+
 django-netman (0.1.6) UNRELEASED; urgency=low
 
   [ root ]
