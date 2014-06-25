@@ -1,0 +1,6 @@
+include README.md
+recursive-include netman/static *
+recursive-include netman/templates *
+
+include versioneer.py
+include netman/_version.py
