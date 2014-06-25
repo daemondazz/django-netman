@@ -1,5 +1,13 @@
+django-netman (0.1.1-1) unstable; urgency=low
+
+  * Update domain search to use extra() instead of raw()
+
+ -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 13:09:42 +0930
+
 django-netman (0.1-1) unstable; urgency=low
 
   * source package automatically created by stdeb 0.6.0+git
+  * Update debian packaging files.
+  * Update setup file to include ipaddr package.
 
- -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 10:19:43 +0930
+ -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 11:09:42 +0930
