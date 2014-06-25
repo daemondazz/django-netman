@@ -1,3 +1,9 @@
+django-netman (0.2.1) UNRELEASED; urgency=low
+
+  * Remove call to DNS Manager PTR records. DNS Module to hook into Address.post_save signal instead.
+
+ -- Darryl Ross <darryl@afoyi.com>  Wed, 25 Jun 2014 20:06:07 +0930
+
 django-netman (0.2) UNRELEASED; urgency=low
 
   * Update setup.py to include templates and static media.
