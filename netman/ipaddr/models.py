@@ -1,8 +1,6 @@
 from mptt.models import MPTTModel, TreeForeignKey
 from django.db import models
 
-from afoyi.modules.dns.models import Domain, Record
-
 from forms import NewIPAddressField
 
 
