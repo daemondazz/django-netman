@@ -21,7 +21,7 @@ bumpversion:
 	git tag --force v$(VERSION)
 
 push:
-	git push && git push --gags
+	git push && git push --tags
 
 source:
 	$(PYTHON) setup.py sdist $(COMPILE)
