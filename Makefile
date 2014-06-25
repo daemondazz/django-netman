@@ -20,6 +20,9 @@ bumpversion:
 	git commit -m "Automatically updated changelog for version $(VERSION)"
 	git tag --force v$(VERSION)
 
+push:
+	git push && git push --gags
+
 source:
 	$(PYTHON) setup.py sdist $(COMPILE)
 
