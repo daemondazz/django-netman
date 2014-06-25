@@ -131,14 +131,12 @@ class Address(models.Model):
             if desc is None:
                 return
             try:
-                domain = Domain.objects.raw("""
-                    SELECT * FROM dns_domain WHERE %s LIKE ('%%' || name || '%%') ORDER BY name LIMIT 1;
-                """, [revname])[0]
+                domain = Domain.objects.extra(where=["'%s' LIKE ('%%%%' || name)" % revname]).order_by('-name').first()
                 Record(domain=domain,
                        name=revname,
                        type='PTR',
                        content=desc).save()
-            except IndexError:
+            except Domain.DoesNotExist:
                 pass
 
     class Meta:
