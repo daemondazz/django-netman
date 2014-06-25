@@ -16,6 +16,7 @@ all:
 
 bumpversion:
 	git-dch --auto --git-author -N $(VERSION)
+	sed -i -e 's/UNRELEASED/precise/g' debian/changelog
 	git add debian/changelog
 	git commit -m "Automatically updated changelog for version $(VERSION)"
 	git tag --force v$(VERSION)
