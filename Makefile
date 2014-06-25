@@ -15,7 +15,7 @@ all:
 	@echo "make clean - Get rid of scratch and byte files"
 
 bumpversion:
-	git-dch --auto --git-author -N $(VERSION)
+	git-dch --auto --git-author -N $(VERSION) -R
 	git add debian/changelog
 	git commit -m "Automatically updated changelog for version $(VERSION)"
 	git tag --force v$(VERSION)
