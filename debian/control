@@ -1,0 +1,12 @@
+Source: django-netman
+Maintainer: Darryl Ross <darryl@afoyi.com>
+Section: python
+Priority: optional
+Build-Depends: python-all (>= 2.6.6-3), debhelper (>= 7)
+Standards-Version: 3.9.1
+
+Package: python-django-netman
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Description: Network management modules for Django
+
