@@ -1,3 +1,12 @@
+django-netman (0.4) precise; urgency=low
+
+  * Reinstate __init__.py
+  * Add .gitignore file.
+  * Add initial Rack module.
+  * Remove unneeded divider span in breadcrumbs.
+
+ -- Darryl Ross <darryl@afoyi.com>  Thu, 26 Jun 2014 22:57:49 +0930
+
 django-netman (0.3) precise; urgency=low
 
   * Add urls.py file to MANIFEST.
