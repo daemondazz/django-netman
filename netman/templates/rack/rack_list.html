@@ -1,0 +1,33 @@
+{% extends "rack/base.html" %}
+{% block breadcrumbs %}
+{{block.super}}
+<li>Racks</li>
+{% endblock %}
+
+{% block main %}
+{% if rack_list %}
+<table class="table-data" style="width: 100%;">
+	<tr><th>ID</th><th>Name</th><th>Location</th><th>Actions</th></tr>
+{% for rack in rack_list %}
+<tr>
+	<td><a href="{% url 'netman_rack_view' rack_id=rack.id %}">{{rack.id}}</a></td>
+	<td>{{rack.name}}</td>
+	<td>{{rack.location}}</td>
+	<td class="actions">delete</td></tr>
+{% endfor %}
+</table>
+{% else %}
+<p>There are currently no rackes in the list.</p>
+{% endif %}
+
+{% if quick_form %}
+<h2 style="margin-top: 2em;">Quick Add Rack</h2>
+<form action="add/" method="post">
+{% csrf_token %}
+<table>
+{{quick_form}}
+<tr><th></th><td><input type="submit" value="Add"/></td></tr>
+</table>
+</form>
+{% endif %}
+{% endblock %}

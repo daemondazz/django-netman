@@ -1,0 +1,18 @@
+{% extends "rack/base.html" %}
+{% block breadcrumbs %}
+{{block.super}}
+<li><a href="{% url 'netman_rack_home' %}">Rack List</a></li>
+<li><a href="{% url 'netman_rack_view' rack_id=rack.id %}">Rack Details</a></li>
+<li>Confirm Delete Device</li>
+{% endblock %}
+
+{% block main %}
+
+<p>Are you sure you want to delete the <strong>{{device.description}}</strong> in slot {{device.rack_slot}}?</p>
+
+<form action="." method="post">
+{% csrf_token %}
+	<input type="submit" value="Yes" /> &nbsp; <a href="{% url 'netman_rack_view' rack_id=rack.id %}">No</a>
+</form>
+
+{% endblock %}

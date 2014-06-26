@@ -1,0 +1,84 @@
+{% extends "rack/base.html" %}
+{% block breadcrumbs %}
+{{block.super}}
+<li><a href="{% url 'netman_rack_home' %}">Racks</a></li>
+<li>Rack Details - {{rack.name}}</li>
+{% endblock %}
+
+{% block main %}
+
+<table class="table-summary">
+  <tr><th style="width: 10em;">Name:</th><td>{{rack.name}}</td></tr>
+{% if rack.location %}
+  <tr><th>Location:</th><td>{{rack.location}}</td></tr>
+{% endif %}
+{% if rack.suite %}
+  <tr><th>Suite:</th><td>{{rack.suite}}</td></tr>
+{% endif %}
+{% if rack.row %}
+  <tr><th>Row:</th><td>{{rack.row}}</td></tr>
+{% endif %}
+  <tr><th>Height:</th><td>{{rack.height}}RU</td></tr>
+</table>
+
+<p></p>
+<table class="rack_layout">
+  <tr><td></td><td style="width: 45%;">Front</td><td style="width: 45%;">Back</td></tr>
+{% for slot in rack.populated_slots reversed %}
+  <tr>
+    <td class="row_num">{{forloop.revcounter}}</td>
+{% if slot %}
+<!-- {{device}} -->
+{% if slot.full %}
+    {% with slot.full.device as device %}
+    {% if slot.full.top %}
+    <td colspan="2" rowspan="{{device.height}}" class="populated_{{ device.location }}">{{device.description}}<span class="action"><a href="{% url 'netman_rack_delete_device' rack_id=device.rack.id device_id=device.id %}"><span>(D)</span></a></span></td>
+    {% endif %}
+    {% endwith %}
+{% else %}
+  {% if slot.front %}
+    {% with slot.front.device as device %}
+    {% if slot.front.top %}
+    <td rowspan="{{device.height}}" class="populated_{{ device.location }}">{{device.description}}<span class="action"><a href="{% url 'netman_rack_delete_device' rack_id=device.rack.id device_id=device.id %}"><span>(D)</span></a></span></td>
+    {% endif %}
+    {% endwith %}
+    {% if slot.back %}
+    {% with slot.back.device as device %}
+    {% if slot.back.top %}
+    <td rowspan="{{device.height}}" class="populated_{{ device.location }}">{{device.description}}<span class="action"><a href="{% url 'netman_rack_delete_device' rack_id=device.rack.id device_id=device.id %}"><span>(D)</span></a></span></td>
+    {% endif %}
+    {% endwith %}
+    {% else %}
+      <td class="populated_false"></td>
+    {% endif %}
+  {% else %}
+    <td class="populated_false"></td>
+    {% if slot.back %}
+    {% with slot.back.device as device %}
+    {% if slot.back.top %}
+    <td rowspan="{{device.height}}" class="populated_{{ device.location }}">{{device.description}}<span class="action"><a href="{% url 'netman_rack_delete_device' rack_id=device.rack.id device_id=device.id %}"><span>(D)</span></a></span></td>
+    {% endif %}
+    {% endwith %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+{% else %}
+    <td class="populated_false"></td>
+    <td class="populated_false"></td>
+{% endif %}
+  </tr>
+{% endfor %}
+</table>
+
+{% if quick_form %}
+<h2 style="margin-top: 2em;">Quick Add Device</h2>
+<form action="add/" method="post">
+{% csrf_token %}
+<table>
+{{quick_form}}
+<tr><th></th><td><input type="submit" value="Add"/></td></tr>
+</table>
+</form>
+{% endif %}
+
+{% endblock %}

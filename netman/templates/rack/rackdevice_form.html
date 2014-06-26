@@ -1,0 +1,10 @@
+{% extends "rack/base.html" %}
+{% block breadcrumbs %}{{block.super}}<li><a href="..">Rack List</a><span class="divider">/</span></li><li>Create Rack</li>{% endblock %}
+
+{% block main %}
+<form method="post" action=".">
+{% csrf_token %}
+{{form.as_p}}
+<p><input type="submit"/> &nbsp; <a href="../">Cancel</a></p>
+</form>
+{% endblock %} 
