@@ -56,7 +56,7 @@ class NewIPAddressField(models.Field):
     def get_db_prep_value(self, value, **kwargs):
         try:
             return self.to_python(value).strNormal()
-        except TypeError:
+        except (AttributeError, TypeError):
             return None
 
     def formfield(self, **kwargs):
