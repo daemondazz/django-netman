@@ -7,7 +7,7 @@ from forms import NewIPAddressField
 class Subnet(MPTTModel):
     description = models.CharField(max_length=64, blank=True)
     network_addr = NewIPAddressField('Network', db_index=True, unique=True,
-                                  blank=True)
+                                     blank=True)
     supernet = models.BooleanField('Super Net', default=False)
     mask_len = models.IntegerField(editable=False)
     is_private = models.BooleanField('Is Private Network', default=False,
