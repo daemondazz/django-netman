@@ -1,5 +1,6 @@
 from mptt.models import MPTTModel, TreeForeignKey
 from django.db import models
+from django.core.urlresolvers import reverse_lazy
 
 from forms import NewIPAddressField
 
@@ -63,6 +64,10 @@ class Subnet(MPTTModel):
 
     def __unicode__(self):
         return unicode(self.network_addr.strNormal())
+
+    def get_absolute_url(self):
+        return reverse_lazy('netman_ipaddr_subnet_view',
+                            kwargs={'subnet_id': self.id})
 
     def save(self, *args, **kwargs):
         self.mask_len = self.network_addr.prefixlen()
